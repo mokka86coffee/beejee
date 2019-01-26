@@ -1,0 +1,96 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    font-family: cursive;
+    font-size: 16px;
+}
+
+.tasks {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    background-color: rgb(238, 238, 238);
+    
+    &__box {
+        padding: 20px;
+
+        &--filter {
+          background-color: rgb(83, 83, 83);
+        }
+
+        &--settings {
+            display: flex;
+            background-color: rgba(115, 255, 0, 0.171);
+        }
+
+    }
+
+    &__filter-box {
+        padding: 20px;
+    }
+    
+    &__btn {
+        padding: 10px;
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        &--submit {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    &__row {
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__item {
+        display: inline-block;
+        width: calc(33% - 50px);
+        max-width: 220px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:not(:last-child) {
+            margin-right: 30px;
+        }
+
+        &--name {
+            font-weight: bold;
+        }
+
+        &--email {
+            color: red;
+        }
+
+        &--text {
+            color: #222;
+        }
+
+        &--status {
+            width: 60px;
+            color: orange;
+        }
+    }
+
+    &__form {
+        display: inline-block;
+        margin-right: 20px;
+        max-width: 220px;
+    }
+
+    &__input-task {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    &__pagination {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+}
