@@ -1,22 +1,26 @@
-import jQuery from 'jQuery';
-export function crossBrowserFetch(link, params) {
+export function crossBrowserFetch (url, optionObj = { method: 'GET', body: undefined }, JSONparsing = true) {
     return new Promise((resolve, reject) => {
-        jQuery.ajax({
-            url: link,
-            method: params.method,
-            crossDomain: true,
-            mimeType: "multipart/form-data",
-            contentType: false,
-            processData: false,
-            data: params.body,
-            dataType: "json",
-            success: function (data) {
-                if (data.status == 'ok') {
-                    resolve(data)
-                } else {
-                    console.log(data);
-                }
+        const req = new XMLHttpRequest();
+        req.open(optionObj.method, url);
+
+        if (optionObj.headers) {
+            for (let key in optionObj.headers) {
+                req.setRequestHeader(key, optionObj.headers[key]);
             }
-        });
-    });
+        }
+
+        req.onload = () => {
+            if (req.status === 200) {
+                if (JSONparsing) {
+                    resolve(JSON.parse(req.response));
+                } else {
+                    resolve(req.response);
+                }
+            } else {
+                reject(Error(req.statusText));
+            }
+        };
+
+        req.send(optionObj.body);
+    })
 }
